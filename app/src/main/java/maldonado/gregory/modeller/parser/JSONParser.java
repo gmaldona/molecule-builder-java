@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class JSONParser {
 
-    public static HashMap<String, HashMap<String, String>> parse() {
+    protected static HashMap<String, HashMap<String, String>> parse() {
         String jsonString = getJSONData("data/Elements.json");
         List<Object> jsonObjects = parseJSON(jsonString);
         return jsonToHashMap(jsonObjects);

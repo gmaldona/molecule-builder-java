@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class EquationParser {
 
-    public static HashMap<String, Integer> parse(String equation) {
+    protected static HashMap<String, Integer> parse(String equation) {
 
         HashMap<String, Integer> elements = new HashMap<>();
         StringBuilder element = new StringBuilder();

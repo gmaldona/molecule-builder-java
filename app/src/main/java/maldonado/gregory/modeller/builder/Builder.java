@@ -20,4 +20,8 @@ public class Builder {
 
         return atoms;
     }
+
+    public static void BuildFromAdjacencyMatrix(int[][] matrix) {
+
+    }
 }
