@@ -3,7 +3,12 @@ package maldonado.gregory.modeller.molecule;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-
+/**
+ * @author Gregory Maldonado
+ * @since 2021-05-06
+ *
+ * Definition of an Atom
+ */
 public class Atom {
 
     private double atomicMass;
@@ -19,6 +24,14 @@ public class Atom {
     private int[] oxidationStates;
     private String symbol;
 
+    public Atom(String symbol) {
+
+    }
+
+    /**
+     *
+     * @param data A HashMap that contains JSON data for an Atom
+     */
     public Atom(HashMap<String, String> data) {
 
         this.atomicNumber            = Integer.parseInt(data.get("atomicNumber"));

@@ -1,9 +1,40 @@
-package maldonado.gregory.modeller.parser;
+package maldonado.gregory.modeller.util.parser;
 
 import java.util.HashMap;
 
+/**
+ * @author Gregory Maldonado
+ * @since 2021-05-06
+ *
+ * Parsing methods for parsing Strings into molecular equations
+ */
+
 public class EquationParser {
 
+    /**
+     * Iterates over each Atomic Symbol and stores the count
+     * @param equation A String Array of Atomic Symbols
+     * @return A HashMap that contains the parsed Atomic Symbol with values of the mole count
+     */
+    protected static HashMap<String, Integer> parse(String[] equation) {
+
+        HashMap<String, Integer> elements = new HashMap<>();
+
+        for (String name : equation) {
+            if (elements.containsKey(name)) {
+                elements.put(name, elements.get(name) + 1);
+                continue;
+            }
+            elements.put(name, 1);
+        }
+        return elements;
+    }
+
+    /**
+     * Steps letter by letter and checks the ASCII value of the character
+     * @param equation String that can be parsed into a molecular equation
+     * @return A HashMap that contains the parsed Atomic Symbol with values of the mole count
+     */
     protected static HashMap<String, Integer> parse(String equation) {
 
         HashMap<String, Integer> elements = new HashMap<>();

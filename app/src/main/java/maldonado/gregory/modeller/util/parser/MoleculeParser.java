@@ -1,13 +1,23 @@
-package maldonado.gregory.modeller.parser;
+package maldonado.gregory.modeller.util.parser;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
+
+/**
+ * @author Gregory Maldonado
+ * @since 2021-05-06
+ *
+ * Parsing methods for parsing data to create Molecule classes
+ */
 public class MoleculeParser {
 
+    /**
+     * Opens the Molecule.model file and parses the file into usable data
+     * @return String array of Atom names
+     */
     protected static String[] getAtomNames() {
         String[] atomsNames = new String[]{};
         try {
@@ -26,16 +36,30 @@ public class MoleculeParser {
         return atomsNames;
     }
 
+    /**
+     *
+     * @param symbol An Atomic Symbol
+     * @return Data for the Atom with the Atomic Symbol
+     */
+    protected static HashMap<String, String> getAtomData(String symbol) {
+        return Parser.getAllAtomData().get(symbol);
+    }
+
+    /**
+     * Opens the Molecule.model file and parses the data into an adjacency matrix
+     * @return 2D int array that contains an adjacency matrix for a Graph of the molecule
+     */
     protected static int[][] getAdjacencyMatrix() {
         ArrayList<ArrayList<Integer>> adjacencyMatrix = new ArrayList<>();
         int count = 0;
-        String index = "";
+        String index;
         try {
             File model = new File("data/Molecule.model");
             Scanner scanner = new Scanner(model);
             while(scanner.hasNextLine()) {
 
                 index = scanner.nextLine();
+                // parses the data based on spaces in the file
                 count = index.split(" ").length - 1;
                 if (Character.isLetter(index.charAt(0))) {
                     String[] matrixString = index.substring(2).split(" ");
