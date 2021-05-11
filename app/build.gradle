@@ -18,6 +18,26 @@ repositories {
 
 dependencies {
     compile files('libs/json-java.jar')
+    compile files('libs/core.jar')
+    //compile files('libs/gluegen-rt-natives-linux-aarch64.jar')
+    //compile files('libs/gluegen-rt-natives-linux-amd64.jar')
+    //compile files('libs/gluegen-rt-natives-linux-armv6hf.jar')
+    //compile files('libs/gluegen-rt-natives-linux-i586.jar')
+    compile files('libs/gluegen-rt-natives-macosx-universal.jar')
+    //compile files('libs/gluegen-rt-natives-windows-amd64.jar')
+    //compile files('libs/gluegen-rt-natives-windows-i586.jar')
+    compile files('libs/gluegen-rt.jar')
+    //compile files('libs/jogl-all-natives-linux-aarch64.jar')
+    //compile files('libs/jogl-all-natives-linux-amd64.jar')
+    //compile files('libs/jogl-all-natives-linux-armv6hf.jar')
+    //compile files('libs/jogl-all-natives-linux-i586.jar')
+    compile files('libs/jogl-all-natives-macosx-universal.jar')
+    //compile files('libs/jogl-all-natives-windows-amd64.jar')
+    //compile files('libs/jogl-all-natives-windows-i586.jar')
+    compile files('libs/jogl-all.jar')
+    compile files('libs/peasy-math.jar')
+    compile files('libs/peasycam.jar')
+    
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13'
 

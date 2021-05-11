@@ -11,12 +11,10 @@ import maldonado.gregory.modeller.util.bool.Boolean;
 public class Bond {
 
     private Atom atom, otherAtom;
-    private String bondHashString;
 
     public Bond(Atom atom, Atom otherAtom) {
         this.atom = atom;
         this.otherAtom = otherAtom;
-        bondHashString = String.valueOf(this.atom.hashCode()) + String.valueOf(this.otherAtom.hashCode());
     }
 
     public double getElectronegativity() { return Math.abs(atom.getElectronegativity() - otherAtom.getElectronegativity()); }

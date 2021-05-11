@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="gluegen-rt-natives-linux-aarch641">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/gluegen-rt-natives-linux-aarch64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/gluegen-rt-natives-linux-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/gluegen-rt-natives-linux-armv6hf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/gluegen-rt-natives-windows-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/gluegen-rt-natives-windows-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/gluegen-rt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/jogl-all-natives-linux-armv6hf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/jogl-all-natives-linux-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/jogl-all-natives-macosx-universal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/jogl-all.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/json-java.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/peasy-math.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

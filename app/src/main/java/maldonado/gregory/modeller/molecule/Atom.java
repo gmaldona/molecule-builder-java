@@ -23,6 +23,7 @@ public class Atom {
     private String name;
     private int[] oxidationStates;
     private String symbol;
+    private int valanceElectrons;
 
     /**
      *
@@ -40,6 +41,7 @@ public class Atom {
         this.ionizationEnergy        = Integer.parseInt(data.get("ionizationEnergy"));
         this.name                    = data.get("name");
         this.symbol                  = data.get("symbol");
+        this.valanceElectrons        = calculateValanceElectrons();
 
         try {
             this.atomicMass = Double.parseDouble(data.get("atomicMass"));
@@ -108,6 +110,8 @@ public class Atom {
         return symbol;
     }
 
+    public int getValanceElectrons() { return this.valanceElectrons; }
+
     public String toString() {
         return "Name                   : " + this.name + "\n" +
                 "Symbol                 : " + this.symbol + "\n" +
@@ -122,12 +126,17 @@ public class Atom {
                 "Oxidation States       : " + Arrays.toString(this.oxidationStates);
     }
 
-    public int getValanceElectrons() {
+    /**
+     * Finds the outer shell level and adds all of the electrons in each orbital
+     * @return The valance number of electrons
+     */
+    private int calculateValanceElectrons() {
+        // Each orbital is spaced by " "
         String[] orbitals = this.electronicConfiguration.split(" ");
-        int outterShell = Integer.parseInt(orbitals[orbitals.length - 1].substring(0, 1));
+        int outerShell = Integer.parseInt(orbitals[orbitals.length - 1].substring(0, 1));
         int valanceElectrons = 0;
         for (String orbital : orbitals) {
-            if (orbital.substring(0, 1).equals(String.valueOf(outterShell))) {
+            if (orbital.substring(0, 1).equals(String.valueOf(outerShell))) {
                 valanceElectrons = valanceElectrons + Integer.parseInt(orbital.substring(2));
             }
         }
