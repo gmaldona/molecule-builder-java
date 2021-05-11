@@ -4,7 +4,9 @@ import maldonado.gregory.modeller.util.parser.Parser;
 import maldonado.gregory.modeller.util.bool.Boolean;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.stream.Stream;
 
 /**
  * @author Gregory Maldonado
@@ -15,56 +17,63 @@ import java.util.HashMap;
  */
 public class Molecule {
 
-    private Atom[] atoms;
+    private ArrayList<Atom> atoms;
     private ArrayList<Bond> bonds;
 
     /** Manually defining a Molecule */
-    public Molecule(Atom[] atoms) {
-        this.atoms = atoms;
-    }
-    /** Defining a Molecule using the .model file */
-    public Molecule() { }
+    public Molecule(Atom[] atoms) { this.atoms = new ArrayList<>(Arrays.asList(atoms)); }
 
-    public Atom[] getAtoms() { return this.atoms; }
+    public Molecule(ArrayList<Atom> atoms) { this.atoms = atoms; }
+    /** Defining a Molecule using the .model file */
+    public Molecule(boolean fromSave) {
+        if (fromSave) {
+            String[] atomNames = Parser.getMoleculeBuildAtoms();
+            int[][] adjacencyMatrix = Parser.getMoleculeBuildMatrix();
+            this.setBonds(atomNames, adjacencyMatrix);
+        }
+    }
+
+    public ArrayList<Atom> getAtoms() { return this.atoms; }
 
     public ArrayList<Bond> getBonds() { return this.bonds; }
 
     /**
-     * Defines the molecule using the .model file
+     * This method creates the bonds between each atom based on the adjacency matrix provided
      * @param atomNames A String array of Atom.Name
      * @param adjacencyMatrix A 2D Array that contains an adjacency matrix for the graph
      */
-    //TODO: Instead of making a new Atom every iteration, init a whole array of Atoms and then iterate over each
-    //      index and check if there is a bond between those two Atoms (i and j indices)
     public void setBonds(String[] atomNames, int[][] adjacencyMatrix) {
         bonds = new ArrayList<>();
-        atoms = new Atom[atomNames.length];
+        atoms = new ArrayList<>();
+        ArrayList<String> bondIndices = new ArrayList<>();
 
-        HashMap<String, Integer> molecule = Parser.getmoleculeData(atomNames);
+        for (String atomName : atomNames) { atoms.add(new Atom(Parser.getAtomData(atomName))); }
 
-       for (int i = 0; i < adjacencyMatrix.length; i++) {
-           String atomName = atomNames[i];
+        for (int i = 0; i < adjacencyMatrix.length; i++) {
+            Atom atom = atoms.get(i);
+            for (int j = 0; j < adjacencyMatrix.length; j++) {
+                if (i != j) {
+                    if (adjacencyMatrix[i][j] == 1) {
+                        Atom otherAtom = atoms.get(j);
+                        String flippedIndices = String.valueOf(j) + String.valueOf(i);
+                        if (!bondIndices.contains(flippedIndices)) {
+                            bondIndices.add(String.valueOf(i) + String.valueOf(j));
+                            bonds.add(new Bond(atom, otherAtom));
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-           Atom atom = new Atom(Parser.getAtomData(atomName));
-           atoms[i] = atom;
+    public double getMolecularWeight() {
+        double weight = 0.0;
+        for (Atom atom : atoms) { weight += atom.getAtomicMass(); }
+        return weight;
+    }
 
-           int[] atomBonds = adjacencyMatrix[i];
-
-           for (int bondIndex = 0; bondIndex < atomBonds.length; bondIndex ++) {
-               if (bondIndex == 1) {
-                   Atom otherAtom = new Atom(Parser.getAtomData(atomNames[bondIndex]));
-                   Bond newBond = new Bond(atom, otherAtom);
-                   boolean isNew = true;
-                   for (Bond bond : bonds) {
-                       isNew = new Boolean(bond.compareTo(newBond)).flip();
-                       break;
-                   }
-                   if (isNew) bonds.add(newBond);
-               }
-           }
-
-       }
-
+    public double getMoleculeWeight(boolean t) {
+        return atoms.stream().map(Atom::getAtomicMass).reduce(Double::sum).get();
     }
 
 }

@@ -15,7 +15,7 @@ public class Parser {
         return EquationParser.parse(equation);
     }
 
-    public static HashMap<String, Integer> getmoleculeData(String[] equation) { return EquationParser.parse(equation); }
+    public static HashMap<String, Integer> getMoleculeData(String[] equation) { return EquationParser.parse(equation); }
 
     public static HashMap<String, HashMap<String, String>> getAllAtomData() {
         return JSONParser.parse();

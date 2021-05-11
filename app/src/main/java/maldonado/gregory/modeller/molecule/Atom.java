@@ -24,10 +24,6 @@ public class Atom {
     private int[] oxidationStates;
     private String symbol;
 
-    public Atom(String symbol) {
-
-    }
-
     /**
      *
      * @param data A HashMap that contains JSON data for an Atom
