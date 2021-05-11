@@ -12,8 +12,9 @@ import java.util.HashMap;
 
 public class App {
     public static void main(String[] args) {
-
+        Atom atom = new Atom(Parser.getAtomData("Cl"));
         Molecule molecule = new Molecule(true);
-        System.out.println(molecule.getBonds().size());
+        System.out.println(atom.getValanceElectrons());
+        System.out.println(molecule.getMolecularWeight());
     }
 }

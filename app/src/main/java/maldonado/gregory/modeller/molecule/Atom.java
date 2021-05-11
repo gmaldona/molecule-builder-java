@@ -62,9 +62,7 @@ public class Atom {
 
     }
 
-    public double getAtomicMass() {
-        return atomicMass;
-    }
+    public double getAtomicMass() { return atomicMass; }
 
     public int getAtomicNumber() {
         return atomicNumber;
@@ -122,6 +120,18 @@ public class Atom {
                 "Group Block            : " + this.groupBlock + "\n" +
                 "Ionization Energy      : " + this.ionizationEnergy + "\n" +
                 "Oxidation States       : " + Arrays.toString(this.oxidationStates);
+    }
+
+    public int getValanceElectrons() {
+        String[] orbitals = this.electronicConfiguration.split(" ");
+        int outterShell = Integer.parseInt(orbitals[orbitals.length - 1].substring(0, 1));
+        int valanceElectrons = 0;
+        for (String orbital : orbitals) {
+            if (orbital.substring(0, 1).equals(String.valueOf(outterShell))) {
+                valanceElectrons = valanceElectrons + Integer.parseInt(orbital.substring(2));
+            }
+        }
+        return valanceElectrons;
     }
 
 }

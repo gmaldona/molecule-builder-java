@@ -1,12 +1,8 @@
 package maldonado.gregory.modeller.molecule;
 
 import maldonado.gregory.modeller.util.parser.Parser;
-import maldonado.gregory.modeller.util.bool.Boolean;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.stream.Stream;
+import java.util.*;
 
 /**
  * @author Gregory Maldonado
@@ -66,14 +62,14 @@ public class Molecule {
         }
     }
 
-    public double getMolecularWeight() {
-        double weight = 0.0;
-        for (Atom atom : atoms) { weight += atom.getAtomicMass(); }
-        return weight;
-    }
+    /**
+     * @return The molecular weight of the molecule
+     */
+    public Double getMolecularWeight() {
+        return atoms.stream()
+                .map(Atom::getAtomicMass)
+                .reduce(Double::sum).get();
 
-    public double getMoleculeWeight(boolean t) {
-        return atoms.stream().map(Atom::getAtomicMass).reduce(Double::sum).get();
     }
 
 }
