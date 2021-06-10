@@ -1,5 +1,7 @@
 package maldonado.gregory.modeller.util.parser;
 
+import maldonado.gregory.modeller.molecule.Molecule;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,6 +84,14 @@ public class MoleculeParser {
             }
         }
         return matrix;
+    }
+
+    /** Defining a Molecule using the .model file */
+    protected static Molecule getSavedMolecule() {
+        String[] atomNames = Parser.getMoleculeBuildAtoms();
+        int[][] adjacencyMatrix = Parser.getMoleculeBuildMatrix();
+        Molecule molecule = new Molecule(atomNames, adjacencyMatrix);
+        return molecule;
     }
 
 }

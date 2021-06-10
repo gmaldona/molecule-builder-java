@@ -11,14 +11,15 @@ public class App {
     public static Environment environment;
 
     public static void main(String[] args) {
-        Atom atom = new Atom(Parser.getAtomData("Cl"));
-        Molecule molecule = new Molecule(true);
-        System.out.println(atom.getValanceElectrons());
+        //Atom atom = new Atom(Parser.getAtomData("Cl"));
+        Molecule molecule = Parser.buildSavedMolecule();
+        //System.out.println(atom.getValanceElectrons());
         System.out.println(molecule.getMolecularWeight());
+        System.out.println(molecule.toString());
 
         environment = new Environment();
         //Calls the processing 3D files
-        PApplet.main(new String[]{"maldonado.gregory.modeller.GUI.P3.Environment"});
+        //PApplet.main(new String[]{"maldonado.gregory.modeller.GUI.P3.Environment"});
 
     }
 }

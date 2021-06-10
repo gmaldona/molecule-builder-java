@@ -1,5 +1,7 @@
 package maldonado.gregory.modeller.util.parser;
 
+import maldonado.gregory.modeller.molecule.Molecule;
+
 import java.util.HashMap;
 
 /**
@@ -27,5 +29,6 @@ public class Parser {
 
     public static String[] getMoleculeBuildAtoms() { return MoleculeParser.getAtomNames(); }
 
+    public static Molecule buildSavedMolecule() { return MoleculeParser.getSavedMolecule(); }
 
 }

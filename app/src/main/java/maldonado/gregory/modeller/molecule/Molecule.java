@@ -20,14 +20,9 @@ public class Molecule {
     public Molecule(Atom[] atoms) { this.atoms = new ArrayList<>(Arrays.asList(atoms)); }
 
     public Molecule(ArrayList<Atom> atoms) { this.atoms = atoms; }
-    /** Defining a Molecule using the .model file */
-    public Molecule(boolean fromSave) {
-        if (fromSave) {
-            String[] atomNames = Parser.getMoleculeBuildAtoms();
-            int[][] adjacencyMatrix = Parser.getMoleculeBuildMatrix();
-            this.setBonds(atomNames, adjacencyMatrix);
-        }
-    }
+
+    /** Building a molecule with the atom names and the bonds to each atom */
+    public Molecule(String[] atomNames, int[][] adjacencyMatrix) { this.setBonds(atomNames, adjacencyMatrix); }
 
     public ArrayList<Atom> getAtoms() { return this.atoms; }
 
@@ -70,6 +65,21 @@ public class Molecule {
                 .map(Atom::getAtomicMass)
                 .reduce(Double::sum).get();
 
+    }
+
+    /**
+     *
+     * @return String representation of the molecular
+     */
+    public String toString() {
+        StringBuilder moleculeStr = new StringBuilder();
+        for (int i = 0; i < atoms.size(); i++) {
+            moleculeStr.append(atoms.get(i).getName()).append("(").append(i).append(")");
+            if (i < atoms.size() - 1) moleculeStr.append(", ");
+        }
+        moleculeStr.append("\n");
+        moleculeStr.append("Molecular Weight: ").append(this.getMolecularWeight());
+        return moleculeStr.toString();
     }
 
 }
