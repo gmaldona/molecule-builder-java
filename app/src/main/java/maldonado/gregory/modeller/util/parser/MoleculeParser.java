@@ -90,8 +90,7 @@ public class MoleculeParser {
     protected static Molecule getSavedMolecule() {
         String[] atomNames = Parser.getMoleculeBuildAtoms();
         int[][] adjacencyMatrix = Parser.getMoleculeBuildMatrix();
-        Molecule molecule = new Molecule(atomNames, adjacencyMatrix);
-        return molecule;
+        return new Molecule(atomNames, adjacencyMatrix);
     }
 
 }

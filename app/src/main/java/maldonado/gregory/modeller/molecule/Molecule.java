@@ -15,19 +15,41 @@ public class Molecule {
 
     private ArrayList<Atom> atoms;
     private ArrayList<Bond> bonds;
+    private HashMap<String, ArrayList<Atom>> uniqueAtoms;
 
     /** Manually defining a Molecule */
-    public Molecule(Atom[] atoms) { this.atoms = new ArrayList<>(Arrays.asList(atoms)); }
+    public Molecule(Atom[] atoms) {
+        this.atoms = new ArrayList<>(Arrays.asList(atoms));
+        getUniqueAtoms();
+    }
 
-    public Molecule(ArrayList<Atom> atoms) { this.atoms = atoms; }
+    public Molecule(ArrayList<Atom> atoms) {
+        this.atoms = atoms;
+        getUniqueAtoms();
+    }
 
     /** Building a molecule with the atom names and the bonds to each atom */
-    public Molecule(String[] atomNames, int[][] adjacencyMatrix) { this.setBonds(atomNames, adjacencyMatrix); }
+    public Molecule(String[] atomNames, int[][] adjacencyMatrix) {
+        this.setBonds(atomNames, adjacencyMatrix);
+        getUniqueAtoms();
+    }
 
     public ArrayList<Atom> getAtoms() { return this.atoms; }
 
     public ArrayList<Bond> getBonds() { return this.bonds; }
 
+    private void getUniqueAtoms() {
+        uniqueAtoms = new HashMap<>();
+        for (Atom atom : atoms) {
+            if (uniqueAtoms.containsKey(atom.getName())) {
+                uniqueAtoms.get(atom.getName()).add(atom);
+            }
+            else {
+                uniqueAtoms.put(atom.getName(), new ArrayList<>());
+                uniqueAtoms.get(atom.getName()).add(atom);
+            }
+        }
+    }
     /**
      * This method creates the bonds between each atom based on the adjacency matrix provided
      * @param atomNames A String array of Atom.Name
@@ -81,5 +103,14 @@ public class Molecule {
         moleculeStr.append("Molecular Weight: ").append(this.getMolecularWeight());
         return moleculeStr.toString();
     }
+
+    public String bondsToString() {
+        StringBuilder bondsStr = new StringBuilder();
+        for (Bond bond : bonds) {
+            bondsStr.append(bond.toString(uniqueAtoms)).append("\n");
+        }
+        return bondsStr.toString();
+    }
+
 
 }

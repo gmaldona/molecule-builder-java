@@ -10,10 +10,11 @@ public class App {
 
     public static Environment environment;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         //Atom atom = new Atom(Parser.getAtomData("Cl"));
         Molecule molecule = Parser.buildSavedMolecule();
         //System.out.println(atom.getValanceElectrons());
+        System.out.println(molecule.bondsToString());
         System.out.println(molecule.getMolecularWeight());
         System.out.println(molecule.toString());
 
