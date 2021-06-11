@@ -1,6 +1,7 @@
 package maldonado.gregory.modeller.util.parser;
 
 import maldonado.gregory.modeller.molecule.Molecule;
+import maldonado.gregory.modeller.util.arrays.ArrayUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -91,6 +92,27 @@ public class MoleculeParser {
         String[] atomNames = Parser.getMoleculeBuildAtoms();
         int[][] adjacencyMatrix = Parser.getMoleculeBuildMatrix();
         return new Molecule(atomNames, adjacencyMatrix);
+    }
+
+    /** Saves the defined molecule to the molecule.model */
+    protected static String saveMolecule(String[] atoms, int[][] adjacencyMatrix) {
+        StringBuilder saveStr = new StringBuilder();
+        saveStr.append(0).append(" ");
+
+        for (int i = 0; i < atoms.length; i++) {
+            saveStr.append(atoms[i]);
+            if (i < atoms.length - 1 ) {
+                saveStr.append(" ");
+            }
+        }
+        saveStr.append("\n");
+
+        for (int i = 0; i < atoms.length; i++) {
+            saveStr.append(atoms[i]).append(" ");
+            saveStr.append(ArrayUtil.toStr(adjacencyMatrix[i]));
+        }
+
+        return saveStr.toString();
     }
 
 }

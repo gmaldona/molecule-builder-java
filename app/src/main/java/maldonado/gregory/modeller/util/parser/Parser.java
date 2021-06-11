@@ -31,4 +31,6 @@ public class Parser {
 
     public static Molecule buildSavedMolecule() { return MoleculeParser.getSavedMolecule(); }
 
+    public static String saveMolecule(String[] atoms, int[][] adjacencyMatrix) { return MoleculeParser.saveMolecule(atoms, adjacencyMatrix); }
+
 }

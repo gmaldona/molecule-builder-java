@@ -28,7 +28,7 @@ public class Bond {
     }
 
     /**
-     * Gets the type of the bonds 
+     * Gets the type of the bonds
      */
     public void type() {
         String atomGroupStr = atom.getGroupBlock();

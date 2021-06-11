@@ -104,6 +104,10 @@ public class Molecule {
         return moleculeStr.toString();
     }
 
+    /**
+     *
+     * @return String representation of the bonds in the molecule
+     */
     public String bondsToString() {
         StringBuilder bondsStr = new StringBuilder();
         for (Bond bond : bonds) {
@@ -111,6 +115,5 @@ public class Molecule {
         }
         return bondsStr.toString();
     }
-
 
 }
