@@ -35,10 +35,10 @@ public class Builder {
         return atoms;
     }
 
-    // TODO: BuildFromAdjacencyMatrix
-    public static void BuildFromAdjacencyMatrix(String[] names, int[][] matrix) {
-
-    }
+//    // TODO: BuildFromAdjacencyMatrix
+//    public static void BuildFromAdjacencyMatrix(String[] names, int[][] matrix) {
+//
+//    }
 
     /** Save to the file name (creates a new file with that name) */
     public static void save(String filename, String[] atoms, int[][] adjacencyMatrix) {
